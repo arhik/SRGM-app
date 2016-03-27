@@ -1,0 +1,61 @@
+<!-- <template bindable="router">
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <i class="fa fa-home"></i>
+        <span>${router.title}</span>
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="skeleton-navigation-navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+          <a data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse.in" href.bind="row.href">${row.title}</a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="loader" if.bind="router.isNavigating">
+          <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>
+
+ -->
+
+ <template bindable="router">
+ <div class="ui secondary pointing menu" role="navigation">
+  <a repeat.for="row of router.navigation" if.bind="row.title=='Welcome'" class="active item" href.bind="row.href">
+    <i class="icon"></i>
+    <span>${router.title}</span>
+  </a>
+  <div class="right menu">
+  <a style="text-decoration:none" repeat.for="row of router.navigation" if.bind="row.title!='Welcome'" class="${row.isActive ? 'active' : '' item" href.bind="row.href">
+    <i class="icon"></i>
+    <span>${row.title}</span>
+  </a>
+ <!--  <a class="item">
+    About Us
+  </a>
+  <a class="item">
+    Contact
+  </a>
+  
+    <a class="item">
+      Logout
+    </a> -->
+  </div>
+</div>
+<!-- <div class="ui segment">
+  <p>Software Reliability Tool is an Open-Source Tool for estimating the reliability of a software given data.</p>
+
+</div> -->
+ </template>

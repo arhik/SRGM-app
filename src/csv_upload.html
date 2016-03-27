@@ -1,0 +1,43 @@
+<template>
+	<input ref="input_tag" id="fileupload" class="ui button" 
+				type="file"
+				change.delegate=csv_data()
+				accept=".txt,.csv"
+				files.bind="datafile"
+				style="display:none"
+				data-content="Please upload a file"/>
+
+	<a class="item" click.delegate=input_file()>					
+		<i class="circular upload icon"></i>
+		Upload File
+	</a>
+
+	<a class="item" click.delegate=computedata()>
+		<i class="circular settings icon link" data-content="This computes the parameters for a given model"></i>
+		Compute
+	</a>
+	<a class="item">
+		<i class="circular unhide icon link" data-content="This computes the parameters for a given model"></i>
+		Details
+	</a>
+	<a class="item">
+		<i class="circular configure icon link" data-content="This computes the parameters for a given model"></i>
+		Configure
+	</a>
+	<a class="item">
+		<i class="circular table icon link" data-content="This computes the parameters for a given model"></i>
+		Table
+	</a>
+	<a class="item">
+		<i class="circular info icon link" data-content="This computes the parameters for a given model"></i>
+		Information
+	</a>
+	<a class="item">
+		<i class="circular help icon link" data-content="This computes the parameters for a given model"></i>
+		help
+	</a>
+	<a class="item">
+		<i class="circular error icon link" data-content="This computes the parameters for a given model"></i>
+		Error Log
+	</a>
+</template>
