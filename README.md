@@ -1,6 +1,20 @@
-# aurelia-skeleton-navigation-webpack
+Software Reliability Growth Modeling
 
-## Getting Started
+SRGM is an application to assess the quality of a software based on testing-failure data.
+
+SRGM is also a platform for fellow researchers to contribute their own models (Software Reliability Growth Models)
+
+TODO:
+	> Benchmarking of the Models based on the Data-Sets from Handbook of Software Reliability. (Similar to MNIST for image classification)
+
+The application is based on the webpack version of Aurelia Skeleton.
+
+The background computations are done by python code and Tornado is used for serving purposes.
+
+Dependencies:
+	> Node
+
+The following are Aurelia setup instructions borrowed directly from Aurelia README: 
 
 Before you start, make sure you have a working [NodeJS](http://nodejs.org/) environment, preferably with NPM 3.
 
