@@ -14,7 +14,7 @@ def go_mle(x):
 
     def tracing(x,f):
 
-        print("callback--", str((x,f)))
+        # print("callback--", str((x,f)))
         lnl_values.append([x.tolist()[0],f.tolist()[0]])
         # return lnl_values
         # return lnl_values.append({x:f})
@@ -30,7 +30,7 @@ def go_mle(x):
     rightEndPointMLE = GO_MLEeq(rightEndPoint)
 
     while(leftEndPointMLE * rightEndPointMLE > 0 & i <= maxIterations):
-    	print(leftEndPoint, rightEndPoint)
+    	# print(leftEndPoint, rightEndPoint)
     	leftEndPoint = leftEndPoint / 2
     	leftEndPointMLE = GO_MLEeq(leftEndPoint)
     	rightEndPoint = 2 * rightEndPoint
@@ -45,52 +45,52 @@ def go_mle(x):
     	# optimize.bisect(GO_MLEeq,0,1e20,xtol=1e-10,rtol=1e-10,maxiter=1000,full_output=False,disp=False)
     	sol = optimize.root(GO_MLEeq, b0, method='krylov', callback=tracing)
     	bMLE = sol.x
-    	print(sol)
+    	# print(sol)
 
     	aMLE = n / (1 - math.exp(-bMLE * (tn)))
 
     	sol = pd.DataFrame([aMLE, bMLE]).transpose()
-    	print(sol)
+    	# print(sol)
     	sol.columns = ["aMLE", "bMLE"]
-    	print(sol)
-        print("callback trace")
-        print(lnl_values);
+    	# print(sol)
+        # print("callback trace")
+        # print(lnl_values);
     	return([sol,lnl_values,[leftEndPoint,rightEndPoint]])
 
 
 
 def GO_MVF(params, d):
 	n = len(d['FN'])
-	print(d['FN'])
+	# print(d['FN'])
 	ft = list(d['FN'])
-	print(ft)
+	# print(ft)
 	f = lambda x: -(math.log((list(params['aMLE'])[0] - x)/list(params['aMLE'])[0]))/list(params['bMLE'])[0]
 	r = map(f,list(d['FN']))
 	r = pd.DataFrame([list(d['FN']),list(r)]).transpose()
-	print("-------------------------------")
-	print(r)
+	# print("-------------------------------")
+	# print(r)
 	r.columns= ["FN","FT"]
-	print(r)
+	# print(r)
 	return(r)
 
 
 def GO_lnL(params,d):
-    print(params)
+    # print(params)
     aMLE = params['aMLE']
     bMLE = params['bMLE']
     # print("d is :",d)
     n = len(d)
-    print("length:",n)
+    # print("length:",n)
 
     tn = d[-1]
-    print("final value:", tn)
+    # print("final value:", tn)
     # firstSumTerm = 0
     firstSumTerm = sum([(-bMLE*d[i]) for i in range(n)])
-    print("firstsumterm")
-    print(firstSumTerm)
+    # print("firstsumterm")
+    # print(firstSumTerm)
     lnL =  -(aMLE)*(1-math.exp(-bMLE*tn)) + n*(math.log(aMLE)) + n*(math.log(bMLE)) + firstSumTerm
-    print("Present Log likelihood:")
-    print(lnL)
+    # print("Present Log likelihood:")
+    # print(lnL)
     return lnL
 
 
