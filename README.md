@@ -1,11 +1,11 @@
-Software Reliability Growth Modeling
+## Software Reliability Growth Modeling
 
 SRGM is an application to assess the quality of a software based on testing-failure data.
 
 SRGM is also a platform for fellow researchers to contribute their own models (Software Reliability Growth Models)
 
 TODO:
-	> Benchmarking of the Models based on the Data-Sets from Handbook of Software Reliability. (Similar to MNIST for image classification)
+	- Benchmarking of the Models based on the Data-Sets from Handbook of Software Reliability. (Similar to MNIST for image classification)
 
 The application is based on the webpack version of Aurelia Skeleton.
 
