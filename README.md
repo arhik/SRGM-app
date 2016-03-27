@@ -4,7 +4,7 @@ SRGM is an application to assess the quality of a software based on testing-fail
 
 SRGM is also a platform for fellow researchers to contribute their own models (Software Reliability Growth Models)
 
-(https://github.com/arhik/SRGM-app/blob/master/.images/App.png)
+![](https://github.com/arhik/SRGM-app/blob/master/.images/App.png)
 TODO:
 	- Benchmarking of the Models based on the Data-Sets from Handbook of Software Reliability. (Similar to MNIST for image classification)
 
