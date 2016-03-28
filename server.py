@@ -17,12 +17,18 @@ __UPLOADS__ = "uploaded_csv_files/"
 root = os.path.dirname(__file__)
 from tornado.options import define, options
 original_data = None;
-define("port", default=3300, help="run on the given port", type=int)
+define("port", default=3000, help="run on the given port", type=int)
 
 class TestHandler(tornado.web.RequestHandler):
 	def get(self):
 		greeting = self.get_argument('greeting',"Hello")
 		self.render('index.html')
+
+class Sample(tornado.web.RequestHandler):
+	def get(self):
+		dataframe = pd.read_csv()
+		g = self.plotlyData(dataframe)
+		self.finish(json.dumps(g))
 
 class Upload(tornado.web.RequestHandler):
 	def post(self):
@@ -58,10 +64,13 @@ class Upload(tornado.web.RequestHandler):
 		return json.dumps(ts)
 
 	def plotlyData(self,dataframe):
-		dataTrace = [{'x' : list(dataframe["FT"]), 'y' : list(dataframe["FN"]), 'mode': 'lines+markers',
-				  "name": 'Original Data',
-				  "line": {"shape": 'vh'},
-				  "type": 'scatter'}]
+		try:
+			dataTrace = [{'x' : list(dataframe["FT"]), 'y' : list(dataframe["FN"]), 'mode': 'lines+markers',
+					  "name": 'Original Data',
+					  "line": {"shape": 'vh'},
+					  "type": 'scatter'}]
+		except Exception as e:
+			return json.dumps(None)
 		return json.dumps(dataTrace) # Should return list of the different plots.
 
 	def datatablesData(self,dataframe):
@@ -144,7 +153,10 @@ class Compute(tornado.web.RequestHandler):
 
 if __name__ == "__main__":
 	tornado.options.parse_command_line()
-	app = tornado.web.Application(handlers=[(r"/upload", Upload),(r"/compute", Compute),(r"/(.*)", tornado.web.StaticFileHandler,\
+	app = tornado.web.Application(handlers=[(r"/upload", Upload),
+											(r"/compute", Compute),
+											(r"/sample",Sample),
+											(r"/(.*)", tornado.web.StaticFileHandler,\
 				{"path":root, "default_filename":"index.html"})
 											], debug=True)
 	http_server = tornado.httpserver.HTTPServer(app)
