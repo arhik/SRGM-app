@@ -10,7 +10,7 @@ export class OriginData{
 		this.plotData = {};
 		this.eventAggregator.subscribe('rawdata', originData => {
 													this.originData= originData; 
-													// console.log(this);
+													console.log(this);
 												});
 		this.eventAggregator.subscribe('plotData', plotData => {
 													this.plotData= plotData; 

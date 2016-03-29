@@ -26,9 +26,18 @@ class TestHandler(tornado.web.RequestHandler):
 
 class Sample(tornado.web.RequestHandler):
 	def get(self):
-		dataframe = pd.read_csv()
+		dataframe = pd.read_csv("model_data.csv")
 		g = self.plotlyData(dataframe)
 		self.finish(json.dumps(g))
+	def plotlyData(self,dataframe):
+		try:
+			dataTrace = [{'x' : list(dataframe["FT"]), 'y' : list(dataframe["FN"]), 'mode': 'lines+markers',
+					  "name": 'Original Data',
+					  "line": {"shape": 'vh'},
+					  "type": 'scatter'}]
+		except Exception as e:
+			return json.dumps(None)
+		return json.dumps(dataTrace)
 
 class Upload(tornado.web.RequestHandler):
 	def post(self):

@@ -1,3 +1,23 @@
 <template>
-	
+	<div class="ui segement">
+		<table class="ui celled table">
+			<thead>
+				<tr>
+					<th repeat.for="head of tableheader" class="right aligned collapsing">
+						${head}
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<template repeat.for="row of tableData.x">
+					<tr >
+						<td repeat.for="head of tableheader" class="right aligned collapsing">
+							${tableData[head][$parent.$index]}
+						</td>
+					</tr>
+				</template>
+			</tbody>
+
+		</table>
+	</div>
 </template>
